@@ -55,7 +55,7 @@ else:
 
 # Загружаем инициалы пользователей из accounts.json
 user_initials = {}
-accounts_file_path = './accounts.json'
+accounts_file_path = 'accounts.json'
 if os.path.exists(accounts_file_path):
     accounts_data = json.load(open(accounts_file_path, 'r'))
     for account in accounts_data:
@@ -120,12 +120,12 @@ for USER_SCREEN_NAME in usernames:
                 all_user_data.append(user_data)
                 break
 
-output_path = './all_user_data.json'
+output_path = 'all_user_data.json'
 with open(output_path, 'w') as json_file:
     json.dump(all_user_data, json_file, indent=4)
 
 current_time_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-log_json_path = './log.json'
+log_json_path = 'log.json'
 date_update = {'dateUpdate': current_time_str}
 with open(log_json_path, 'w') as json_log_file:
     json.dump(date_update, json_log_file, indent=4)
