@@ -1,0 +1,24 @@
+[
+    {
+        "screen_name": "kostos",
+        "id": "29398468",
+        "name": "Konstantin Zhandov",
+        "followers": 87,
+        "following_count": 117,
+        "verified": false,
+        "created_at": "Tue Apr 07 06:23:57 +0000 2009",
+        "location": "Bay Area",
+        "userInitial": "SAS"
+    },
+    {
+        "screen_name": "mark",
+        "id": "5610392",
+        "name": "mark",
+        "followers": 8318,
+        "following_count": 2046,
+        "verified": false,
+        "created_at": "Sat Apr 28 19:24:08 +0000 2007",
+        "location": "gooch island",
+        "userInitial": "SAS"
+    }
+]

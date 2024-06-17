@@ -4,6 +4,9 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+
+//pm2 start server.js
+
 app.use(express.json())
 
 app.post('/api/save_accounts', (req, res) => {
@@ -39,6 +42,30 @@ app.get('/api/usernames', (req, res) => {
     res.json(usernames);
 });
 
+app.get('/api/data', (req, res) => {
+    const filePath = path.join('all_user_data.json');
+
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send('Файл all_user_data.json не найден.');
+    }
+
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+    res.json(data);
+});
+
+app.get('/api/log', (req, res) => {
+    const filePath = path.join('log.json');
+
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send('Файл log.json не найден.');
+    }
+
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+    res.json(data);
+});
+
 app.delete('/api/delete_account', (req, res) => {
     const { username } = req.body;
 
@@ -46,7 +73,7 @@ app.delete('/api/delete_account', (req, res) => {
         return res.status(400).send('Поле username обязательно.');
     }
 
-    const filePath = path.join(__dirname, './accounts.json');
+    const filePath = path.join('accounts.json');
     let accounts = [];
 
     if (fs.existsSync(filePath)) {
