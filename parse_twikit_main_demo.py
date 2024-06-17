@@ -2,7 +2,7 @@ from twikit import Client
 import json
 import time
 from datetime import datetime
-import requests
+import httpx
 import os
 
 accounts = [
@@ -47,11 +47,16 @@ def authorize_client(account):
     )
     return client
 
-response = requests.get('https://1a3f4278e6da.vps.myjino.ru/api/usernames')
-if response.status_code == 200:
-    usernames = response.json()
-else:
-    raise Exception("Не удалось получить usernames с сервера")
+# Используем httpx для выполнения HTTP-запроса
+def get_usernames():
+    url = 'https://1a3f4278e6da.vps.myjino.ru/api/usernames'
+    response = httpx.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception("Не удалось получить usernames с сервера")
+
+usernames = get_usernames()
 
 # Загружаем инициалы пользователей из accounts.json
 user_initials = {}
